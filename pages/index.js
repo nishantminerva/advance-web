@@ -1,122 +1,120 @@
 import Head from "next/head";
-import { useEffect, useRef } from "react";
 
-const CREW = [
+const APP_URL = "https://app.advancetouring.app";
+const SIGN_IN_URL = `${APP_URL}/sign-in`;
+const GET_STARTED_URL = `${APP_URL}/get-started`;
+
+// Store listings aren't public yet. Fill these in when they are and the badges
+// become links; until then they render as "coming soon".
+const APP_STORE_URL = null;
+const GOOGLE_PLAY_URL = null;
+
+const STEPS = [
   {
-    emoji: "🧑🏻‍💼",
-    name: "Hugh",
-    role: "Tour Mgr",
-    taskIcon: "📋",
-    task: "Advancing Lyon",
-    status: "online",
-    x: 6,
-    y: 12,
+    n: "01",
+    t: "Send it in",
+    b: "Forward confirmations to the artist's own inbox address, or upload them from your phone.",
+    shot: "step-upload",
+    crop: "bottom",
   },
   {
-    emoji: "👨🏾‍🎤",
-    name: "Krishna",
-    role: "Lead Vocals",
-    taskIcon: "🎤",
-    task: "Warm-up · GR3",
-    status: "online",
-    x: 22,
-    y: 26,
+    n: "02",
+    t: "Accept what it found",
+    b: "Each document is read and its details offered back to you. Accept, correct or discard them.",
+    shot: "step-proposal",
+    crop: "top",
   },
   {
-    emoji: "👩🏼‍🦰",
-    name: "Ashleigh",
-    role: "FOH Engineer",
-    taskIcon: "🎚️",
-    task: "Soundcheck · live",
-    status: "live",
-    x: 38,
-    y: 8,
-  },
-  {
-    emoji: "🧔🏽",
-    name: "Dre Patel",
-    role: "Advance",
-    taskIcon: "🎸",
-    task: "Tuning rigs",
-    status: "online",
-    x: 60,
-    y: 24,
-  },
-  {
-    emoji: "👨🏼‍✈️",
-    name: "Lex Morgan",
-    role: "Driver",
-    taskIcon: "🚐",
-    task: "ETA 30 min",
-    status: "transit",
-    x: 76,
-    y: 10,
-  },
-  {
-    emoji: "👩🏿‍🦱",
-    name: "Rosa Vega",
-    role: "Stage Mgr",
-    taskIcon: "📻",
-    task: "Comms open",
-    status: "online",
-    x: 92,
-    y: 24,
+    n: "03",
+    t: "The day is ready",
+    b: "Accepted items land on their date, shared with everyone who should see them.",
+    shot: "step-show",
+    crop: "top",
   },
 ];
 
+const INBOX_POINTS = [
+  {
+    t: "One address per artist",
+    b: "Travel agents, hotels, venues and promoters can all send to it directly.",
+  },
+  {
+    t: "Traced to the sentence",
+    b: "Every extracted value remembers the document, the page and the words it came from.",
+  },
+  {
+    t: "Nothing goes in unasked",
+    b: "Machine-read values stay marked until a person verifies or corrects them.",
+  },
+];
+
+const CHECKLIST = [
+  { icon: "speaker", t: "Backline", d: "What the venue supplies" },
+  { icon: "sliders-horizontal", t: "Production", d: "PA, monitors, power" },
+  { icon: "coffee", t: "Hospitality", d: "Rider requests" },
+  { icon: "list-checks", t: "Guest list", d: "Requested, approved, sent" },
+  { icon: "receipt-text", t: "Settlement", d: "Admins only" },
+];
+
+// App screens are captured from the design at 2x, in a light and a dark cut;
+// the browser picks the one matching the visitor's colour scheme.
+function Shot({ name, width, height, alt = "", eager = false, className }) {
+  return (
+    <picture className={className}>
+      <source
+        srcSet={`/images/site/${name}-dark.webp`}
+        media="(prefers-color-scheme: dark)"
+      />
+      <img
+        src={`/images/site/${name}-light.webp`}
+        width={width}
+        height={height}
+        alt={alt}
+        loading={eager ? "eager" : "lazy"}
+        decoding="async"
+      />
+    </picture>
+  );
+}
+
+function StoreBadge({ href, icon, small, big }) {
+  const body = (
+    <>
+      <img src={`/images/icons/${icon}.svg`} width="24" height="24" alt="" />
+      <span className="h-store-text">
+        <span className="h-store-small">{small}</span>
+        <span className="h-store-big">{big}</span>
+      </span>
+    </>
+  );
+  if (href) {
+    return (
+      <a className="h-store" href={href}>
+        {body}
+      </a>
+    );
+  }
+  return (
+    <span className="h-store is-soon" aria-label={`${big}, coming soon`}>
+      {body}
+    </span>
+  );
+}
+
+function Logo({ size }) {
+  return (
+    <img
+      src="/images/site/logo.png"
+      alt=""
+      width={size}
+      height={size}
+      className="h-logo-mark"
+    />
+  );
+}
+
 export default function Home() {
-  const pathRef = useRef(null);
-  const planeRef = useRef(null);
-
-  useEffect(() => {
-    const pathEl = pathRef.current;
-    const planeEl = planeRef.current;
-    if (!pathEl || !planeEl) return;
-
-    // The ✈️ emoji's nose naturally faces ~45° (up-right). Subtract that so
-    // rotate(tangentAngle - emojiOffset) aligns nose with the path direction.
-    const EMOJI_NOSE_OFFSET = 45;
-    const DURATION_MS = 32000;
-
-    let start = null;
-    let rafId = null;
-
-    const tick = (now) => {
-      if (start === null) start = now;
-      const t = ((now - start) / DURATION_MS) % 1;
-
-      const length = pathEl.getTotalLength();
-      const p = pathEl.getPointAtLength(t * length);
-      const pNext = pathEl.getPointAtLength(
-        Math.min(t + 0.001, 1) * length,
-      );
-
-      // Get the SVG's actual rendered box so we can convert from viewBox
-      // (0..100, 0..30) coords into page pixels.
-      const svgEl = pathEl.ownerSVGElement;
-      const svgRect = svgEl.getBoundingClientRect();
-      const screenX = svgRect.left + (p.x / 100) * svgRect.width;
-      const screenY = svgRect.top + (p.y / 30) * svgRect.height;
-
-      // Tangent angle, accounting for the same viewBox→pixel scaling so
-      // the visual angle matches what the eye sees.
-      const dx = (pNext.x - p.x) * (svgRect.width / 100);
-      const dy = (pNext.y - p.y) * (svgRect.height / 30);
-      const angleDeg = (Math.atan2(dy, dx) * 180) / Math.PI;
-
-      planeEl.style.left = `${screenX}px`;
-      planeEl.style.top = `${screenY}px`;
-      planeEl.style.transform = `translate(-50%, -50%) rotate(${angleDeg + EMOJI_NOSE_OFFSET}deg)`;
-      planeEl.style.opacity = "1";
-
-      rafId = requestAnimationFrame(tick);
-    };
-
-    rafId = requestAnimationFrame(tick);
-    return () => {
-      if (rafId) cancelAnimationFrame(rafId);
-    };
-  }, []);
+  const storesLive = APP_STORE_URL || GOOGLE_PLAY_URL;
 
   return (
     <>
@@ -126,159 +124,199 @@ export default function Home() {
           name="viewport"
           content="width=device-width, initial-scale=1.0, viewport-fit=cover"
         />
+        <meta name="theme-color" content="#0f1118" />
+        <link rel="icon" type="image/png" href="/images/site/logo.png" />
       </Head>
 
-      <div className="tour-scene" aria-hidden="true">
-        {/* Ambient particles drifting up */}
-        <div className="ambient-particles">
-          {Array.from({ length: 14 }).map((_, i) => (
-            <span
-              key={i}
-              className="amb-particle"
-              style={{
-                left: `${(i * 7.3) % 100}%`,
-                animationDelay: `${i * 1.7}s`,
-                animationDuration: `${14 + (i % 5) * 3}s`,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Eyebrow */}
-        <div className="route-eyebrow">
-          <span className="route-eyebrow-dot" />
-          ADVANCE · LIVE TOUR · TUE 14
-        </div>
-
-        {/* Show countdown */}
-        <div className="show-countdown">
-          <div className="cd-eyebrow">
-            <span className="cd-led" />
-            SHOW IN
-          </div>
-          <div className="cd-time">
-            <span className="cd-num">05</span>
-            <span className="cd-sep">:</span>
-            <span className="cd-num">42</span>
-            <span className="cd-sep">:</span>
-            <span className="cd-num cd-secs">18</span>
-          </div>
-          <div className="cd-venue">LE TRIANON · PARIS</div>
-        </div>
-
-        {/* City waypoint labels */}
-        <span className="city-waypoint city-1">BERLIN</span>
-        <span className="city-waypoint city-2">PARIS</span>
-        <span className="city-waypoint city-3">LYON</span>
-        <span className="city-waypoint city-4">BARCELONA</span>
-
-        {/* The wavy tour route path */}
-        <svg
-          className="route-svg"
-          viewBox="0 0 100 30"
-          preserveAspectRatio="none"
-        >
-          <path
-            ref={pathRef}
-            d="M 0 18 Q 14 4, 28 22 T 56 16 T 84 14 T 100 22"
-            fill="none"
-            stroke="rgba(200, 255, 0, 0.32)"
-            strokeWidth="0.35"
-            strokeDasharray="0.8 0.9"
-          />
-        </svg>
-
-        {/* Plane traveling the route — JS-driven follow of the SVG path */}
-        <span
-          ref={planeRef}
-          className="plane-traveler"
-          aria-hidden="true"
-        >
-          ✈️
-        </span>
-
-        {/* Crew memoji avatars along the route */}
-        {CREW.map((m, i) => (
-          <div
-            key={i}
-            className={`crew-pin crew-pin-${i}`}
-            style={{
-              left: `${m.x}%`,
-              top: `${m.y}%`,
-              animationDelay: `${i * 0.4}s`,
-            }}
-          >
-            <div className={`memoji-badge memoji-${i}`}>
-              <span className="memoji">{m.emoji}</span>
-              <span className={`status-dot status-${m.status}`} />
-            </div>
-            <div className="crew-card">
-              <span className="crew-name">{m.name}</span>
-              <span className="crew-role">{m.role}</span>
-              <span className="crew-task">
-                <span className="crew-task-icon">{m.taskIcon}</span>
-                {m.task}
-              </span>
-            </div>
-          </div>
-        ))}
-
-        {/* Live now status bar */}
-        <div className="live-bar">
-          <div className="live-bar-led" />
-          <div className="live-bar-text">
-            <span className="live-bar-label">LIVE NOW</span>
-            <span className="live-bar-task">
-              🎚️ Soundcheck · 14:00 · Le Trianon, Paris
+      <div className="adv-home">
+        <div className="h-hero">
+          <header className="h-header">
+            <a href="#top" className="h-brand">
+              <Logo size={28} />
+              advance
+            </a>
+            <nav className="h-nav" aria-label="Sections">
+              <a href="#how">How it works</a>
+              <a href="#inbox">Inbox</a>
+              <a href="#advancing">Advancing</a>
+              <a href="#app">Get the app</a>
+            </nav>
+            <span className="h-header-actions">
+              <a href={SIGN_IN_URL} className="h-btn h-btn-glass">
+                <img src="/images/icons/log-in.svg" width="16" height="16" alt="" />
+                Log in
+              </a>
+              <a href={GET_STARTED_URL} className="h-btn h-btn-lime h-hide-narrow">
+                Get started
+              </a>
             </span>
-          </div>
-          <div className="live-bar-spark">
-            <span /><span /><span /><span /><span /><span /><span />
-          </div>
-          <div className="live-bar-count">
-            <span className="live-bar-count-num">6</span>
-            <span className="live-bar-count-lbl">CREW ONLINE</span>
-          </div>
-        </div>
-      </div>
+          </header>
 
-      <div className="content">
-        <div className="icon-container">
-          <div className="icon-view">
-            <img
-              src="/images/advance-appicon.svg"
-              alt="Advance App Icon"
-              className="appicon"
-            />
-          </div>
+          <section id="top" className="h-hero-body">
+            <div className="h-hero-grid">
+              <div className="h-hero-copy">
+                <span className="h-pill">
+                  <span className="h-pill-dot" />
+                  Built for advancing, on the road
+                </span>
+                <h1>What&apos;s happening today, and what&apos;s left to do.</h1>
+                <p>
+                  Flights, hotels, cars, soundchecks, contacts and files land on
+                  the date they belong to. The tour manager, the band and the
+                  crew all read the same day.
+                </p>
+                <div className="h-hero-ctas">
+                  <a href={GET_STARTED_URL} className="h-btn h-btn-lime h-btn-lg">
+                    Set up an artist
+                  </a>
+                  <a href={SIGN_IN_URL} className="h-btn h-btn-glass h-btn-lg">
+                    <img src="/images/icons/log-in.svg" width="18" height="18" alt="" />
+                    Log in to your account
+                  </a>
+                </div>
+              </div>
+              <div className="h-hero-phones" aria-hidden="true">
+                <Shot
+                  name="hero-queue"
+                  width={390}
+                  height={844}
+                  eager
+                  className="h-phone h-phone-back"
+                />
+                <Shot
+                  name="hero-show"
+                  width={390}
+                  height={844}
+                  eager
+                  className="h-phone h-phone-front"
+                />
+              </div>
+            </div>
+          </section>
         </div>
 
-        <div className="cta-row">
-          <a className="cta-btn cta-btn-primary" href="https://app.advancetouring.app">
-            Get Started
-          </a>
-          <a className="cta-btn cta-btn-secondary" href="https://app.advancetouring.app">
-            Log In
-          </a>
-        </div>
+        <main>
+          <section id="how" className="h-section">
+            <div className="h-wrap h-stack-lg">
+              <div className="h-how-head">
+                <h2 className="h-h2">From a forwarded email to a finished day.</h2>
+                <p className="h-lede">
+                  Information arrives over weeks, out of order, from a dozen
+                  senders. Advance collects it, reads it, and asks you before
+                  anything goes on the itinerary.
+                </p>
+              </div>
+              <div className="h-steps">
+                {STEPS.map((s) => (
+                  <div key={s.n} className="h-step">
+                    <span className="h-step-text">
+                      <span className="h-step-n">{s.n}</span>
+                      <span className="h-step-t">{s.t}</span>
+                      <span className="h-step-b">{s.b}</span>
+                    </span>
+                    <div className={`h-step-frame crop-${s.crop}`} aria-hidden="true">
+                      <Shot name={s.shot} width={390} height={844} className="h-step-phone" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
 
-        <div className="legal-links legal-links-desktop">
-          <a href="/privacy" className="legal-link">
-            Privacy Policy
-          </a>
-          <a href="/terms" className="legal-link">
-            Terms of Use
-          </a>
-        </div>
-      </div>
+          <section id="inbox" className="h-section h-section-flush-top">
+            <div className="h-wrap h-stack-md">
+              <div className="h-inbox-head">
+                <span className="h-eyebrow">The inbox</span>
+                <h2 className="h-h2">
+                  It reads the mail. You decide what goes on the itinerary.
+                </h2>
+              </div>
+              <Shot
+                name="inbox-review"
+                width={1220}
+                height={980}
+                alt="The Advance review screen: extracted flight details beside the highlighted source document."
+                className="h-wide-shot"
+              />
+              <div className="h-points">
+                {INBOX_POINTS.map((p) => (
+                  <div key={p.t} className="h-point">
+                    <span className="h-point-t">{p.t}</span>
+                    <span className="h-point-b">{p.b}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
 
-      <div className="legal-links legal-links-mobile">
-        <a href="/privacy" className="legal-link">
-          Privacy Policy
-        </a>
-        <a href="/terms" className="legal-link">
-          Terms of Use
-        </a>
+          <section id="advancing" className="h-section h-section-card">
+            <div className="h-wrap h-advancing">
+              <div className="h-advancing-copy">
+                <span className="h-eyebrow">Show advancing</span>
+                <h2 className="h-h2 h-h2-sm">Every show, ready before you walk in.</h2>
+                <p className="h-lede">
+                  Track what the venue supplies, what you bring, and what&apos;s
+                  still open. Advance produces the rider and the paperwork
+                  promoters and venues act on. They never need an account.
+                </p>
+                <div className="h-checklist">
+                  {CHECKLIST.map((c) => (
+                    <div key={c.t} className="h-check">
+                      <img src={`/images/icons/${c.icon}.svg`} width="18" height="18" alt="" />
+                      <span className="h-check-t">{c.t}</span>
+                      <span className="h-check-d">{c.d}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <Shot
+                name="advancing-spec"
+                width={1220}
+                height={897}
+                alt="An artist's show spec in Advance: backline, production and rider items with their status."
+                className="h-wide-shot"
+              />
+            </div>
+          </section>
+
+          <section id="app" className="h-section h-app">
+            <h2 className="h-h2-app">Get the app</h2>
+            <div className="h-stores">
+              <StoreBadge
+                href={APP_STORE_URL}
+                icon="apple"
+                small="Download on the"
+                big="App Store"
+              />
+              <StoreBadge
+                href={GOOGLE_PLAY_URL}
+                icon="google-play"
+                small="GET IT ON"
+                big="Google Play"
+              />
+            </div>
+            {!storesLive && (
+              <p className="h-app-note">
+                Coming soon to iPhone and Android. Until then,{" "}
+                <a href={APP_URL}>use Advance in your browser</a>.
+              </p>
+            )}
+          </section>
+        </main>
+
+        <footer className="h-footer">
+          <span className="h-footer-brand">
+            <Logo size={22} />
+            advance
+          </span>
+          <span>© {new Date().getFullYear()} Advance</span>
+          <span className="h-footer-links">
+            <a href={SIGN_IN_URL}>Log in</a>
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/support">Contact</a>
+          </span>
+        </footer>
       </div>
     </>
   );
