@@ -4,9 +4,9 @@ const APP_URL = "https://app.advancetouring.app";
 const SIGN_IN_URL = `${APP_URL}/sign-in`;
 const GET_STARTED_URL = `${APP_URL}/get-started`;
 
-// Store listings aren't public yet. Fill these in when they are and the badges
-// become links; until then they render as "coming soon".
-const APP_STORE_URL = null;
+// A store with no URL yet renders its badge as "coming soon". The App Store
+// link uses the id alone, so it survives the listing's rename.
+const APP_STORE_URL = "https://apps.apple.com/app/id6774474917";
 const GOOGLE_PLAY_URL = null;
 
 const STEPS = [
@@ -96,7 +96,11 @@ function StoreBadge({ href, icon, small, big }) {
   }
   return (
     <span className="h-store is-soon" aria-label={`${big}, coming soon`}>
-      {body}
+      <img src={`/images/icons/${icon}.svg`} width="24" height="24" alt="" />
+      <span className="h-store-text">
+        <span className="h-store-small">COMING SOON ON</span>
+        <span className="h-store-big">{big}</span>
+      </span>
     </span>
   );
 }
@@ -114,7 +118,7 @@ function Logo({ size }) {
 }
 
 export default function Home() {
-  const storesLive = APP_STORE_URL || GOOGLE_PLAY_URL;
+  const soon = [!APP_STORE_URL && "iPhone", !GOOGLE_PLAY_URL && "Android"].filter(Boolean);
 
   return (
     <>
@@ -295,9 +299,9 @@ export default function Home() {
                 big="Google Play"
               />
             </div>
-            {!storesLive && (
+            {soon.length > 0 && (
               <p className="h-app-note">
-                Coming soon to iPhone and Android. Until then,{" "}
+                Coming soon to {soon.join(" and ")}. Until then,{" "}
                 <a href={APP_URL}>use Bump in your browser</a>.
               </p>
             )}

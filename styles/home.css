@@ -542,6 +542,7 @@ html:has(.adv-home) body {
 }
 .h-store.is-soon {
   cursor: default;
+  opacity: 0.55;
 }
 .h-store-text {
   display: flex;
