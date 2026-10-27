@@ -34,7 +34,7 @@ export default function Document() {
           property="og:description"
           content="Tour management for artists, crew, and backline gear."
         />
-        <meta property="og:image" content="https://www.advancetouring.app/images/og-image.png?v=2" />
+        <meta property="og:image" content="https://www.advancetouring.app/images/og-image.png?v=3" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="Bump — live tour dashboard" />
@@ -47,7 +47,7 @@ export default function Document() {
           name="twitter:description"
           content="Tour management for artists, crew, and backline gear."
         />
-        <meta name="twitter:image" content="https://www.advancetouring.app/images/og-image.png?v=2" />
+        <meta name="twitter:image" content="https://www.advancetouring.app/images/og-image.png?v=3" />
         <meta name="twitter:image:alt" content="Bump — live tour dashboard" />
 
         <link rel="preload" as="image" href="/images/advance-appicon.svg" />
