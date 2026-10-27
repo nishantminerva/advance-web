@@ -12,14 +12,14 @@ export default function Support() {
   return (
     <>
       <Head>
-        <title>Support — Advance</title>
+        <title>Support — Bump</title>
       </Head>
       <div className="content">
         <a href="/" className="back-btn">← Back</a>
         <h1 className="page-title">Support</h1>
         <div className="terms-content">
           <p>
-            Need help with <strong>Advance</strong>? Email{" "}
+            Need help with <strong>Bump</strong>? Email{" "}
             <a className="eula-link" href={`mailto:${SUPPORT_EMAIL}`}>
               {SUPPORT_EMAIL}
             </a>{" "}
@@ -36,7 +36,7 @@ export default function Support() {
           <p>
             Each artist has its own inbox address, shown on the Inbox tab. Forward
             flight, hotel and venue emails to it, or upload a PDF with{" "}
-            <strong>Upload document</strong>. Advance reads them and proposes
+            <strong>Upload document</strong>. Bump reads them and proposes
             itinerary changes for an admin to approve.
           </p>
 
@@ -48,8 +48,8 @@ export default function Support() {
 
           <h2>I&apos;m not getting notifications</h2>
           <p>
-            Check <strong>Settings → Notifications → Advance</strong> on your
-            phone, then the notification settings in your Advance profile.
+            Check <strong>Settings → Notifications → Bump</strong> on your
+            phone, then the notification settings in your Bump profile.
           </p>
 
           <h2>How do I delete my account?</h2>

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 const SUPPORT_EMAIL = "support@advancetouring.app";
 // Add the registered postal address beside OPERATOR once the client supplies it.
-const OPERATOR = "Advance Touring";
+const OPERATOR = "Bump";
 
 export default function Privacy() {
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function Privacy() {
   return (
     <>
       <Head>
-        <title>Privacy Policy — Advance</title>
+        <title>Privacy Policy — Bump</title>
       </Head>
       <div className="content">
         <a href="/" className="back-btn">← Back</a>
@@ -30,7 +30,7 @@ export default function Privacy() {
             <strong>Last updated:</strong> September 2026
           </p>
           <p>
-            Advance (&ldquo;we&rdquo;, &ldquo;us&rdquo;) is operated by {OPERATOR}. Advance helps artists, tour managers and touring
+            Bump (&ldquo;we&rdquo;, &ldquo;us&rdquo;) helps artists, tour managers and touring
             crews plan and share tour itineraries. This policy explains what we
             collect, why, who processes it, and how you can delete it.
           </p>
@@ -55,7 +55,7 @@ export default function Privacy() {
             </li>
             <li>
               <strong>Forwarded emails and documents:</strong> emails sent to an
-              artist&apos;s Advance inbox address (sender, subject, body and
+              artist&apos;s Bump inbox address (sender, subject, body and
               attachments) and documents uploaded in the app.
             </li>
             <li>
@@ -70,7 +70,7 @@ export default function Privacy() {
 
           <h2>How we use it</h2>
           <p>
-            Only to run Advance: to show your itinerary, share it with the team
+            Only to run Bump: to show your itinerary, share it with the team
             members you&apos;ve invited, send invitations, notifications and
             reminders, and turn forwarded emails and documents into proposed
             itinerary changes that an admin approves.
@@ -85,7 +85,7 @@ export default function Privacy() {
           </p>
 
           <h2>Service providers</h2>
-          <p>We use these providers to operate Advance. They process data on our behalf:</p>
+          <p>We use these providers to operate Bump. They process data on our behalf:</p>
           <ul>
             <li><strong>Supabase</strong> (hosted on Amazon Web Services): database, sign-in and file storage</li>
             <li>
@@ -120,7 +120,7 @@ export default function Privacy() {
           </p>
 
           <h2>Children</h2>
-          <p>Advance is a professional tool and isn&apos;t directed at children under 16.</p>
+          <p>Bump is a professional tool and isn&apos;t directed at children under 16.</p>
 
           <h2>Your rights</h2>
           <p>

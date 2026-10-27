@@ -119,7 +119,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Advance</title>
+        <title>Bump</title>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, viewport-fit=cover"
@@ -133,7 +133,7 @@ export default function Home() {
           <header className="h-header">
             <a href="#top" className="h-brand">
               <Logo size={28} />
-              advance
+              bump
             </a>
             <nav className="h-nav" aria-label="Sections">
               <a href="#how">How it works</a>
@@ -202,7 +202,7 @@ export default function Home() {
                 <h2 className="h-h2">From a forwarded email to a finished day.</h2>
                 <p className="h-lede">
                   Information arrives over weeks, out of order, from a dozen
-                  senders. Advance collects it, reads it, and asks you before
+                  senders. Bump collects it, reads it, and asks you before
                   anything goes on the itinerary.
                 </p>
               </div>
@@ -235,7 +235,7 @@ export default function Home() {
                 name="inbox-review"
                 width={1220}
                 height={980}
-                alt="The Advance review screen: extracted flight details beside the highlighted source document."
+                alt="The Bump review screen: extracted flight details beside the highlighted source document."
                 className="h-wide-shot"
               />
               <div className="h-points">
@@ -256,7 +256,7 @@ export default function Home() {
                 <h2 className="h-h2 h-h2-sm">Every show, ready before you walk in.</h2>
                 <p className="h-lede">
                   Track what the venue supplies, what you bring, and what&apos;s
-                  still open. Advance produces the rider and the paperwork
+                  still open. Bump produces the rider and the paperwork
                   promoters and venues act on. They never need an account.
                 </p>
                 <div className="h-checklist">
@@ -273,7 +273,7 @@ export default function Home() {
                 name="advancing-spec"
                 width={1220}
                 height={897}
-                alt="An artist's show spec in Advance: backline, production and rider items with their status."
+                alt="An artist's show spec in Bump: backline, production and rider items with their status."
                 className="h-wide-shot"
               />
             </div>
@@ -298,7 +298,7 @@ export default function Home() {
             {!storesLive && (
               <p className="h-app-note">
                 Coming soon to iPhone and Android. Until then,{" "}
-                <a href={APP_URL}>use Advance in your browser</a>.
+                <a href={APP_URL}>use Bump in your browser</a>.
               </p>
             )}
           </section>
@@ -307,9 +307,9 @@ export default function Home() {
         <footer className="h-footer">
           <span className="h-footer-brand">
             <Logo size={22} />
-            advance
+            bump
           </span>
-          <span>© {new Date().getFullYear()} Advance</span>
+          <span>© {new Date().getFullYear()} Bump</span>
           <span className="h-footer-links">
             <a href={SIGN_IN_URL}>Log in</a>
             <a href="/privacy">Privacy</a>

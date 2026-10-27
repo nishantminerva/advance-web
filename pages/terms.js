@@ -10,7 +10,7 @@ export default function Terms() {
   return (
     <>
       <Head>
-        <title>Terms of Use — Advance</title>
+        <title>Terms of Use — Bump</title>
       </Head>
       <div className="content">
         <a href="/" className="back-btn">← Back</a>
@@ -20,7 +20,7 @@ export default function Terms() {
             <strong>Last updated:</strong> May 2026
           </p>
           <p>
-            By using Advance you agree to these Terms of Use. If you do not
+            By using Bump you agree to these Terms of Use. If you do not
             agree, please do not use the app.
           </p>
 
@@ -43,7 +43,7 @@ export default function Terms() {
           <h2>Content</h2>
           <p>
             You retain ownership of the tour data, contracts, and stage plots
-            you upload. By using Advance you grant us a license to display
+            you upload. By using Bump you grant us a license to display
             that content within the app to the workspace members you choose.
           </p>
 

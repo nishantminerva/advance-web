@@ -10,7 +10,7 @@ export default function DeleteAccount() {
   return (
     <>
       <Head>
-        <title>Delete Your Account — Advance</title>
+        <title>Delete Your Account — Bump</title>
       </Head>
       <div className="content">
         <a href="/" className="back-btn">← Back</a>
@@ -20,18 +20,17 @@ export default function DeleteAccount() {
             <strong>Last updated:</strong> July 2026
           </p>
           <p>
-            This page explains how to delete your <strong>Advance</strong>{" "}
-            account, what data is removed, and how long anything is kept. Advance
-            is operated by Advance Touring.
+            This page explains how to delete your <strong>Bump</strong>{" "}
+            account, what data is removed, and how long anything is kept.
           </p>
 
           <h2>Delete your account from inside the app</h2>
           <p>
             The fastest way to permanently delete your account is directly in the
-            Advance app:
+            Bump app:
           </p>
           <ul>
-            <li>Open the Advance app and sign in with the account you want to delete.</li>
+            <li>Open the Bump app and sign in with the account you want to delete.</li>
             <li>Tap the <strong>Profile</strong> tab, then scroll to the bottom of the screen.</li>
             <li>Tap <strong>Delete Account</strong> and confirm when prompted.</li>
             <li>
@@ -46,14 +45,14 @@ export default function DeleteAccount() {
             <a className="eula-link" href="mailto:hello@advancetouring.app">
               hello@advancetouring.app
             </a>{" "}
-            from the address on your Advance account with the subject
+            from the address on your Bump account with the subject
             &ldquo;Delete my account.&rdquo; We&apos;ll verify ownership and
             complete the deletion within 30 days.
           </p>
 
           <h2>What is deleted</h2>
           <p>
-            When you delete your account, Advance permanently removes all of the
+            When you delete your account, Bump permanently removes all of the
             following, immediately:
           </p>
           <ul>
