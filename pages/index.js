@@ -123,13 +123,12 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Bump</title>
+        <title>bump</title>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, viewport-fit=cover"
         />
         <meta name="theme-color" content="#0f1118" />
-        <link rel="icon" type="image/png" href="/images/site/logo.png" />
       </Head>
 
       <div className="adv-home">
@@ -206,7 +205,7 @@ export default function Home() {
                 <h2 className="h-h2">From a forwarded email to a finished day.</h2>
                 <p className="h-lede">
                   Information arrives over weeks, out of order, from a dozen
-                  senders. Bump collects it, reads it, and asks you before
+                  senders. bump collects it, reads it, and asks you before
                   anything goes on the itinerary.
                 </p>
               </div>
@@ -239,7 +238,7 @@ export default function Home() {
                 name="inbox-review"
                 width={1220}
                 height={980}
-                alt="The Bump review screen: extracted flight details beside the highlighted source document."
+                alt="The bump review screen: extracted flight details beside the highlighted source document."
                 className="h-wide-shot"
               />
               <div className="h-points">
@@ -260,7 +259,7 @@ export default function Home() {
                 <h2 className="h-h2 h-h2-sm">Every show, ready before you walk in.</h2>
                 <p className="h-lede">
                   Track what the venue supplies, what you bring, and what&apos;s
-                  still open. Bump produces the rider and the paperwork
+                  still open. bump produces the rider and the paperwork
                   promoters and venues act on. They never need an account.
                 </p>
                 <div className="h-checklist">
@@ -277,7 +276,7 @@ export default function Home() {
                 name="advancing-spec"
                 width={1220}
                 height={897}
-                alt="An artist's show spec in Bump: backline, production and rider items with their status."
+                alt="An artist's show spec in bump: backline, production and rider items with their status."
                 className="h-wide-shot"
               />
             </div>
@@ -302,7 +301,7 @@ export default function Home() {
             {soon.length > 0 && (
               <p className="h-app-note">
                 Coming soon to {soon.join(" and ")}. Until then,{" "}
-                <a href={APP_URL}>use Bump in your browser</a>.
+                <a href={APP_URL}>use bump in your browser</a>.
               </p>
             )}
           </section>
@@ -313,7 +312,7 @@ export default function Home() {
             <Logo size={22} />
             bump
           </span>
-          <span>© {new Date().getFullYear()} Bump</span>
+          <span>© {new Date().getFullYear()} bump</span>
           <span className="h-footer-links">
             <a href={SIGN_IN_URL}>Log in</a>
             <a href="/privacy">Privacy</a>

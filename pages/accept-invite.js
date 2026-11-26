@@ -40,17 +40,17 @@ export default function AcceptInvite() {
   return (
     <>
       <Head>
-        <title>Join your tour — Bump</title>
+        <title>Join your tour — bump</title>
         <meta name="robots" content="noindex" />
       </Head>
       <div className="content">
         <h1 className="page-title">You&rsquo;re invited</h1>
         <p>
-          Open the Bump app to join the tour, or continue in your browser.
+          Open the bump app to join the tour, or continue in your browser.
         </p>
         <p>
           <a className="eula-link" href={appUrl}>
-            Open the Bump app
+            Open the bump app
           </a>
         </p>
         <p>
@@ -67,7 +67,7 @@ export default function AcceptInvite() {
           </p>
         ) : null}
         <p>
-          Don&rsquo;t have the app yet? Install Bump, then enter the invite
+          Don&rsquo;t have the app yet? Install bump, then enter the invite
           code from your email.
         </p>
       </div>

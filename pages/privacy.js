@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 const SUPPORT_EMAIL = "support@advancetouring.app";
 // Add the registered postal address beside OPERATOR once the client supplies it.
-const OPERATOR = "Bump";
+const OPERATOR = "bump";
 
 export default function Privacy() {
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function Privacy() {
   return (
     <>
       <Head>
-        <title>Privacy Policy — Bump</title>
+        <title>Privacy Policy — bump</title>
       </Head>
       <div className="content">
         <a href="/" className="back-btn">← Back</a>
@@ -30,7 +30,7 @@ export default function Privacy() {
             <strong>Last updated:</strong> September 2026
           </p>
           <p>
-            Bump (&ldquo;we&rdquo;, &ldquo;us&rdquo;) helps artists, tour managers and touring
+            bump (&ldquo;we&rdquo;, &ldquo;us&rdquo;) helps artists, tour managers and touring
             crews plan and share tour itineraries. This policy explains what we
             collect, why, who processes it, and how you can delete it.
           </p>
@@ -55,7 +55,7 @@ export default function Privacy() {
             </li>
             <li>
               <strong>Forwarded emails and documents:</strong> emails sent to an
-              artist&apos;s Bump inbox address (sender, subject, body and
+              artist&apos;s bump inbox address (sender, subject, body and
               attachments) and documents uploaded in the app.
             </li>
             <li>
@@ -70,7 +70,7 @@ export default function Privacy() {
 
           <h2>How we use it</h2>
           <p>
-            Only to run Bump: to show your itinerary, share it with the team
+            Only to run bump: to show your itinerary, share it with the team
             members you&apos;ve invited, send invitations, notifications and
             reminders, and turn forwarded emails and documents into proposed
             itinerary changes that an admin approves.
@@ -85,7 +85,7 @@ export default function Privacy() {
           </p>
 
           <h2>Service providers</h2>
-          <p>We use these providers to operate Bump. They process data on our behalf:</p>
+          <p>We use these providers to operate bump. They process data on our behalf:</p>
           <ul>
             <li><strong>Supabase</strong> (hosted on Amazon Web Services): database, sign-in and file storage</li>
             <li>
@@ -120,7 +120,7 @@ export default function Privacy() {
           </p>
 
           <h2>Children</h2>
-          <p>Bump is a professional tool and isn&apos;t directed at children under 16.</p>
+          <p>bump is a professional tool and isn&apos;t directed at children under 16.</p>
 
           <h2>Your rights</h2>
           <p>

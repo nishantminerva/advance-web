@@ -205,8 +205,9 @@ html:has(.adv-home) body {
   letter-spacing: -0.02em;
   flex: none;
 }
+/* Hugh's icon carries its own rounded corners. */
 .h-logo-mark {
-  border-radius: 8px;
+  display: block;
 }
 .h-nav {
   display: none;
@@ -590,9 +591,6 @@ html:has(.adv-home) body {
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--text);
-}
-.h-footer-brand .h-logo-mark {
-  border-radius: 6px;
 }
 .h-footer-links {
   margin-left: auto;

@@ -55,7 +55,7 @@ export default function AuthCallback() {
   return (
     <>
       <Head>
-        <title>Signing in — Bump</title>
+        <title>Signing in — bump</title>
         <meta name="robots" content="noindex" />
       </Head>
       <div className="content">
@@ -64,12 +64,12 @@ export default function AuthCallback() {
         </h1>
         <p>
           {platform === "mac"
-            ? "Continue in the Bump app if you have it installed, or keep going in your browser."
-            : "You can return to the Bump app to continue. If it didn’t reopen automatically, tap a button below."}
+            ? "Continue in the bump app if you have it installed, or keep going in your browser."
+            : "You can return to the bump app to continue. If it didn’t reopen automatically, tap a button below."}
         </p>
         <p>
           <a className="eula-link" href={appUrl}>
-            Open the Bump app
+            Open the bump app
           </a>
         </p>
         <p>

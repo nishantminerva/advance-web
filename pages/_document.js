@@ -28,29 +28,33 @@ export default function Document() {
 
         {/* Open Graph */}
         <meta property="og:url" content="https://www.advancetouring.app/" />
-        <meta property="og:site_name" content="Bump" />
-        <meta property="og:title" content="Bump" />
+        <meta property="og:site_name" content="bump" />
+        <meta property="og:title" content="bump" />
         <meta
           property="og:description"
           content="Tour management for artists, crew, and backline gear."
         />
-        <meta property="og:image" content="https://www.advancetouring.app/images/og-image.png?v=3" />
+        <meta property="og:image" content="https://www.advancetouring.app/images/og-image.png?v=4" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Bump — live tour dashboard" />
+        <meta property="og:image:alt" content="bump — live tour dashboard" />
         <meta property="og:type" content="website" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Bump" />
+        <meta name="twitter:title" content="bump" />
         <meta
           name="twitter:description"
           content="Tour management for artists, crew, and backline gear."
         />
-        <meta name="twitter:image" content="https://www.advancetouring.app/images/og-image.png?v=3" />
-        <meta name="twitter:image:alt" content="Bump — live tour dashboard" />
+        <meta name="twitter:image" content="https://www.advancetouring.app/images/og-image.png?v=4" />
+        <meta name="twitter:image:alt" content="bump — live tour dashboard" />
 
-        <link rel="preload" as="image" href="/images/advance-appicon.svg" />
+        {/* Hugh's icon. favicon.ico holds 16, 32 and 48; iOS "Add to Home
+            Screen" wants a square with no alpha. */}
+        <link rel="icon" href="/favicon.ico" sizes="48x48" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </Head>
       <body>
         <Main />
